@@ -19,7 +19,7 @@ class MovieScraping extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Run the scraping file';
 
     /**
      * Create a new command instance.

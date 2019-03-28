@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Product;
 use App\Review;
 use Auth;
 
 class ReviewsController extends RankingController
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -20,8 +18,7 @@ class ReviewsController extends RankingController
     public function create($product_id)
     {
         $product = Product::find($product_id);
-        $review = new Review();
-        return view('reviews.create')->with(['product' => $product, 'review' => $review]);
+        return view('reviews.create')->with('product', $product);
     }
 
     public function store(Request $request, $product_id)
@@ -32,6 +29,7 @@ class ReviewsController extends RankingController
           'review' => $request->review,
           'product_id' => $product_id,
         ]);
+
         return redirect('/');
     }
 }

@@ -10,10 +10,11 @@ class Scraping
     {
         require_once 'simple_html_dom.php';
 
-        $links = array();
+        $links = [];
         $next_url = "";
 
-        while (true) {
+        while (true)
+        {
             $current_page = file_get_html('http://review-movie.herokuapp.com/' . $next_url);
             $elements = $current_page->find('.entry-title a');
             foreach ($elements as $element) {
@@ -22,17 +23,16 @@ class Scraping
 
             $next_link = $current_page->find('.pagination .next a');
 
-
-            if (!$next_link) {
+            if (!$next_link)
+            {
                 break;
             }
 
             $next_url = $next_link[0]->href;
         }
 
-
         foreach ($links as $link) {
-            Scraping::get_product('http://review-movie.herokuapp.com/' . $link);
+          Scraping::get_product('http://review-movie.herokuapp.com' . $link);
         }
     }
 

@@ -7,7 +7,6 @@ use App\Product;
 
 class ProductsController extends RankingController
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -16,7 +15,7 @@ class ProductsController extends RankingController
 
     public function index()
     {
-        $products = Product::orderBy('id', 'ASC')->take(20)->get();
+        $products = Product::paginate(20);
         return view('products.index')->with('products', $products);
     }
 
@@ -28,7 +27,7 @@ class ProductsController extends RankingController
 
     public function search(Request $request)
     {
-        $products = Product::where('title', 'LIKE', "%{$request->keyword}%")->take(20)->get();
+        $products = Product::where('title', 'like', "%{$request->keyword}%")->take(20)->get();
         return view('products.search')->with('products', $products);
     }
 }

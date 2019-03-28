@@ -4,9 +4,9 @@
 <div class="user_page">
   <header class="user_page-header">
     <div class="yjContainer">
-      <a href="">
+      <a href="/storage/{{ Auth::user()->avatar }}">
         <div class="user_image"><img alt="Fix" src="/storage/{{ Auth::user()->avatar }}"></div>
-        <h2>テスト太郎<span>さんのマイページ</span></h2>
+        <h2>{{ Auth::user()->name }}<span>さんのマイページ</span></h2>
       </a>
     </div>
   </header>
@@ -16,14 +16,14 @@
         <ul class="user_page-contents">
           @foreach (Auth::user()->reviews as $review)
             <li style="background-image: url({{ $review->product->image_url }})">
-            <div class="meta">
-              <header>
-                <div class="title">{{ $review->product->title }}</div>
-                <span class="star"><span class="rating-star"><i class="star-actived rate-{{ $review->rate }}0"></i></span></span>
-              </header>
-              <div class="user_review">{{ $review->review }}</div>
-            </div>
-          </li>
+              <div class="meta">
+                <header>
+                  <div class="title">{{ $review->product->title }}</div>
+                  <span class="star"><span class="rating-star"><i class="star-actived rate-{{ $review->rate }}0"></i></span></span>
+                </header>
+                <div class="user_review">{{ $review->review }}</div>
+              </div>
+            </li>
           @endforeach
         </ul>
       </div>
