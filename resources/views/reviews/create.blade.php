@@ -10,7 +10,7 @@
           <div class="container">
             <header class="header header--section">
               <h2 class="text-middle">
-                <i class="icon-movie color-gray-light"></i>投稿
+                <i class="fa fa-pencil icon-movie color-gray-light"></i>投稿
               </h2>
             </header>
             <div>
@@ -37,6 +37,20 @@
               </ul>
             </div>
           </div>
+          {{ Form::open(['action' => ['ReviewsController@store', $product->id]]) }}
+            <div style="margin: 8px 0">
+              {{ Form::label('rate', '評価', ['style' => 'margin-right:8;']) }}
+              {{ Form::selectRange('rate', 1, 10, ['placeholder' => '評価', 'class' => 'searh__query', 'style' => 'text-align: right;']) }}
+            </div>
+            <div style="margin: 8px 0">
+              {{ Form::textarea('review', '', ['placeholder' => 'レビューを書いてね！', 'style' => 'width: 100%;height: 300px;']) }}
+            </div>
+            <div class="row">
+              <div class="col10 push1">
+                {{ Form::submit('投稿する', ['class' => 'btn btn--block']) }}
+              </div>
+            </div>
+          {{ Form::close() }}
         </article>
       </div>
       <div id="yjSub">

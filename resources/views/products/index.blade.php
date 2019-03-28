@@ -14,22 +14,23 @@
               </h2>
             </header>
             <ul class="thumbnails thumbnail--movies row grid4 js-lazy-load-images js-my-check-stats" id="list-module">
-
+              @foreach ($products as $product)
                 <li class="col">
-                  <a href="/products/{映画作品の番号}"><div class="thumbnail__figure" style="background-image:url({映画作品の画像URL})"></div></a>
+                  <a href="/products/{{ $product->id }}"><div class="thumbnail__figure" style="background-image:url({{ $product->image_url }})"></div></a>
                   <div class="thumbnail__caption">
-                    <h3 class="text-xsmall text-overflow" title="タイトル">
-                      タイトル
+                    <h3 class="text-xsmall text-overflow" title="{{ $product->title }}">
+                      {{ $product->title }}
                     </h3>
                     <p class="text-small">
                       <span class="rating-star">
-                        <i class="star-actived rate-[ここに評価を表示]0"></i>
+                        <i class="star-actived rate-{{ $product->review_average() }}0"></i>
                       </span>
                     </p>
                   </div>
                 </li>
-
+              @endforeach
             </ul>
+            {{ $products->links() }}
           </div>
         </article>
       </div>

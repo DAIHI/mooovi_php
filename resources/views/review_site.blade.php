@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>映画レビューサイト</title>
-  <link href="{{ asset('css/review_site.css')}}" rel='stylesheet' type='text/css'>
-  <link href="{{ asset('css/font-awesome.css')}}" rel='stylesheet' type='text/css'>
+  <link href="{{ asset('css/review_site.css') }}" rel='stylesheet' type='text/css'>
+  <link href="{{ asset('css/font-awesome.css') }}" rel='stylesheet' type='text/css'>
 </head>
 <body class="yj950-2">
 <div id="wrapper">
@@ -15,9 +15,26 @@
           <li class="logo" style="float: left">
             <a href="/">mooovi</a>
           </li>
-          <li class="entry_button" style="float: right">
-            <a href="/products/search">投稿する</a>
-          </li>
+          @if (Auth::check())
+            <li class="entry_button">
+              {{ Form::open(['url' => "/logout", 'method' => 'post', 'id' => 'logout']) }}
+              {{ Form::close() }}
+              <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout').submit();">サインアウト</a>
+            </li>
+            <li class="entry_button" style="float: right">
+              <a href="/users/{{ Auth::user()->id }}">マイページ</a>
+            </li>
+            <li class="entry_button" style="float: right">
+              <a href="/products/search">投稿する</a>
+            </li>
+          @else
+            <li class="entry_button" style="float: right">
+              <a href="/register">新規登録</a>
+            </li>
+            <li class="entry_button" style="float: right">
+              <a href="/login">ログイン</a>
+            </li>
+          @endif
         </ul>
       </div>
     </nav>
@@ -32,7 +49,7 @@
         @php
           $i = 1;
         @endphp
-        @foreach (array() as $product)
+        @foreach ($ranking as $product)
           <li data-cinema-id="346394">
             <a href="/products/{{ $product->id }}">
               <div class="box">
@@ -50,9 +67,9 @@
               </div>
             </a>
           </li>
-        @php
-          $i++;
-        @endphp
+          @php
+            $i++;
+          @endphp
         @endforeach
       </ul>
     </aside>

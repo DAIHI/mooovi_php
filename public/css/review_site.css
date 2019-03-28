@@ -232,6 +232,7 @@ input[type='search'] {
 
 img {
   vertical-align: bottom;
+  width: 100%;
 }
 
 @font-face {

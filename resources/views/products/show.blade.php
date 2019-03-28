@@ -10,34 +10,36 @@
           <div class="container">
             <header class="header header--section">
               <h2 class="text-middle">
-                <i class="icon-movie color-gray-light"></i>{{ $product->title }}
+                <i class="fa fa-film icon-movie color-gray-light"></i>{{ $product->title }}
               </h2>
             </header>
             <p style="text-align: center">
               <img src="{{ $product->image_url }}" alt="{{ $product->title }}">
             </p>
             <div style="text-align: right">
-              <a href="">この作品を投稿する</a>
+              <a href="/products/{{ $product->id }}/reviews/create">この作品を投稿する</a>
             </div>
             <header class="header header--section">
               <h2 class="text-middle">
-                <i class="icon-movie color-gray-light"></i>みんなのレビュー
+                <i class="fa fa-users icon-movie color-gray-light"></i>みんなのレビュー
               </h2>
             </header>
             <ul style="padding: 0">
-              <li style="border-bottom: dotted 1px">
-                <div class="thumbnail__caption">
-                  <h3 class="text-xsmall text-overflow" title="テスト太郎">
-                    </span>テスト太郎<small 2014=""></small>
-                  </h3>
-                  <p class="text-small">
-                    <span class="rating-star"><i class="star-actived rate-[ここに評価を表示]0"></i></span>
-                  </p>
-                  <p>
-                    面白い
-                  </p>
-                </div>
-              </li>
+              @foreach ($product->reviews()->get() as $review)
+                <li style="border-bottom: dotted 1px">
+                  <div class="thumbnail__caption">
+                    <h3 class="text-xsmall text-overflow" title="{{ $review->user->name }}">
+                      <span><i class="text-xxsmall" title=""></i></span>{{ $review->user->name }}
+                    </h3>
+                    <p class="text-small">
+                      <span class="rating-star"><i class="star-actived rate-{{ $review->rate }}0"></i></span>
+                    </p>
+                    <p>
+                      {{ $review->review }}
+                    </p>
+                  </div>
+                </li>
+              @endforeach
             </ul>
           </div>
         </article>

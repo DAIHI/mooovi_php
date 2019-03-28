@@ -32,7 +32,7 @@
               <li>
                 <a class="listview__element--right-icon" href="/products/{{ $product->id }}/reviews/create" title="{{ $product->title }}">
                   <div class="position-right p1em">
-                    <i class="icon-chevron-right color-sub"></i>
+                    <i class="fa fa-angle-double-right icon-chevron-right color-sub"></i>
                   </div>
                   <div class="row no-space-bottom">
                     <div class="col2">
