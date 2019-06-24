@@ -27,7 +27,7 @@ class ProductsController extends RankingController
 
     public function search(Request $request)
     {
-        $products = Product::where('title', 'like', "%{$request->keyword}%")->take(20)->get();
+        $products = Product::where('title', 'LIKE', "%{$request->keyword}%")->take(20)->get();
         return view('products.search')->with('products', $products);
     }
 }
